@@ -1,0 +1,23 @@
+.caption {
+    padding-right: 5px;
+}
+
+.input {
+    width: 50px;
+}
+
+.errorInput {
+    border-color: red;
+    background-color: red;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    min-height: 16px;
+}
+
+.captionAndInputWrap {
+    display: flex;
+    justify-content: space-between;
+}
