@@ -16,20 +16,12 @@ export const Button: React.FC<ButtonPropsType> =
          tooltipTitle,
          children
      }) => {
-        return (tooltipTitle && !disabled) ? (
-                <Tooltip title={tooltipTitle}>
-                    <IconButton
-                        size={"small"}
-                        color={"primary"}
-                        onClick={onClick}
-                        disabled={disabled}
-                        style={style}
-                    >
-                        {children}
-                    </IconButton>
-                </Tooltip>
-            )
-            : (
+        
+        return (
+            <Tooltip
+                title={tooltipTitle ?? ""}
+                disableHoverListener={!tooltipTitle && disabled}
+            ><span>
                 <IconButton
                     size={"small"}
                     color={"primary"}
@@ -39,5 +31,7 @@ export const Button: React.FC<ButtonPropsType> =
                 >
                     {children}
                 </IconButton>
-            )
+            </span>
+            </Tooltip>
+        )
     }
