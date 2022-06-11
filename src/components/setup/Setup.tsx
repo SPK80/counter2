@@ -1,8 +1,8 @@
 import React from 'react';
-import setupStyles from './Setup.module.css'
-import panelStyles from '../common/Panel.module.css'
 import {Button} from "../common/Button";
 import {InputNumber} from "../common/InputNumber";
+import {BeenhereRounded} from "@material-ui/icons";
+import {Box, Container, createStyles, Grid, makeStyles, Paper, Theme} from "@material-ui/core";
 
 type SetupType = {
     onConfirm: () => void
@@ -16,30 +16,45 @@ type SetupType = {
 }
 
 export const Setup: React.FC<SetupType> = (props) => {
+    const useStyles = makeStyles((theme: Theme) =>
+        createStyles({
+            paper: {
+                width: 150,
+                padding: 10,
+            },
+        }),
+    )
+    
+    const classes = useStyles();
     
     return (
-        <div className={setupStyles.setup + ' ' + panelStyles.panel}>
-            <InputNumber
-                value={props.maxValue}
-                onChangeValue={props.onChangeMaxValue}
-                caption={'max value:'}
-                captionClassName={setupStyles.caption}
-                error={props.isMaxValueIncorrect}
-            />
-            <InputNumber
-                value={props.startValue}
-                onChangeValue={props.onChangeStartValue}
-                caption={'start value:'}
-                captionClassName={setupStyles.caption}
-                error={props.isStartValueIncorrect}
-            />
-            
-            <Button
-                disabled={props.isSetButtonDisabled}
-                onClick={props.onConfirm}
-            > set
-            </Button>
+        <Paper className={classes.paper}>
+            <Grid item>
+                <InputNumber
+                    value={props.maxValue}
+                    onChangeValue={props.onChangeMaxValue}
+                    caption={'max value:'}
+                    error={props.isMaxValueIncorrect}
+                />
+            </Grid>
+            <Grid item>
+                <InputNumber
+                    value={props.startValue}
+                    onChangeValue={props.onChangeStartValue}
+                    caption={'start value:'}
+                    error={props.isStartValueIncorrect}
+                />
+            </Grid>
+            <Grid item style={{textAlign: "center"}}>
+                
+                <Button
+                    disabled={props.isSetButtonDisabled}
+                    onClick={props.onConfirm}
+                    style={{display: "inline-block", position: "relative"}}
+                > <BeenhereRounded/>
+                </Button>
+            </Grid>
         
-        </div>
-    );
+        </Paper>
+    )
 }

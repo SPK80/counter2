@@ -1,5 +1,6 @@
 import React from "react";
 import s from './Monitor.module.css'
+import {createStyles, makeStyles, Paper, Theme} from "@material-ui/core";
 
 export type MonitorModeType = 'count' | 'info' | 'error'
 
@@ -22,5 +23,26 @@ export const Monitor: React.FC<MonitorPropsType> = (props) => {
             className += ' ' + s.error
             break
     }
-    return <div className={className}> {props.data} </div>
+    
+    const useStyles = makeStyles((theme: Theme) =>
+        createStyles({
+            paper: {
+                margin: 10,
+                padding: 5,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                font: "inherit",
+                background: "azure",
+            },
+        }),
+    )
+    
+    const classes = useStyles();
+    
+    
+    return <Paper
+        variant={"outlined"}
+        className={classes.paper}
+    > <span>{props.data}</span> </Paper>
 }

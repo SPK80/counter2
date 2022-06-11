@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import s from './App.module.css'
 import {Counter} from "./counter/Counter";
 import {Setup} from "./setup/Setup";
+import {Container, createStyles, Grid, makeStyles, Theme} from "@material-ui/core";
 
 function App() {
     
@@ -69,8 +70,24 @@ function App() {
         localStorage.setItem('maxValue', maxValue.toString())
     }
     
+    const useStyles = makeStyles((theme: Theme) =>
+        createStyles({
+            root: {
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+            },
+        }),
+    )
+    
+    const classes = useStyles();
+    
     return (
-        <div className={s.app}>
+        <Container className={classes.root}>
             {viewMode === 'counter' ?
                 <Counter
                     monitorMode={"count"}
@@ -92,8 +109,8 @@ function App() {
                     onChangeMaxValue={onChangeMaxValueHandler}
                 />
             }
-        </div>
-    );
+        </Container>
+    )
 }
 
 export default App;

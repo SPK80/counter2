@@ -1,8 +1,8 @@
 import React from 'react';
-import counterStyles from "./Counter.module.css";
-import panelStyles from '../common/Panel.module.css'
 import {Monitor, MonitorModeType} from "./Monitor";
 import {Button} from "../common/Button";
+import {AddBox, Cached, Settings} from "@material-ui/icons";
+import {createStyles, makeStyles, Paper, Theme} from "@material-ui/core";
 
 type CounterType = {
     startValue: number
@@ -33,36 +33,54 @@ export const Counter: React.FC<CounterType> = (props) => {
             monitorData = errorMessage
     }
     
+    const useStyles = makeStyles((theme: Theme) =>
+        createStyles({
+            paperRoot: {
+                width: 150,
+                padding: 10,
+            },
+            paperButtons: {
+                height: 50,
+                margin: 10,
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                
+            },
+        }),
+    )
+    
+    const classes = useStyles();
+    
     return (
-        <div className={counterStyles.counter + ' ' + panelStyles.panel}>
+        <Paper className={classes.paperRoot}>
             <Monitor
                 mode={props.monitorMode}
                 data={monitorData}
                 isMaxValue={props.counterValue === props.maxValue}
             />
             
-            <div className={counterStyles.buttonsPanel}>
-                
+            <Paper variant={"outlined"} className={classes.paperButtons}>
                 <Button
                     onClick={props.onClickInc}
                     disabled={isIncBtnDisabled}
-                > inc
+                > <AddBox/>
                 </Button>
                 
                 <Button
                     onClick={props.onClickReset}
                     disabled={isResetBtnDisabled}
-                > reset
+                > <Cached/>
                 </Button>
                 
                 <Button
                     onClick={props.onClickSet}
                     disabled={false}
-                > set
+                > <Settings/>
                 </Button>
             
-            </div>
+            </Paper>
         
-        </div>
+        </Paper>
     )
 }
