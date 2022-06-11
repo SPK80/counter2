@@ -1,5 +1,4 @@
 import React from "react";
-// import s from './Monitor.module.css'
 import {createStyles, makeStyles, Paper, Theme} from "@material-ui/core";
 
 export type MonitorModeType = 'count' | 'info' | 'error'

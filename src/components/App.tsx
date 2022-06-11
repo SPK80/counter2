@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import s from './App.module.css'
 import {Counter} from "./counter/Counter";
 import {Setup} from "./setup/Setup";
-import {Container, createStyles, Grid, makeStyles, Theme} from "@material-ui/core";
+import {Container, createStyles, makeStyles, Theme} from "@material-ui/core";
 
 function App() {
     
