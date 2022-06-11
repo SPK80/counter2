@@ -64,18 +64,21 @@ export const Counter: React.FC<CounterType> = (props) => {
                 <Button
                     onClick={props.onClickInc}
                     disabled={isIncBtnDisabled}
+                    tooltipTitle="Add"
                 > <AddBox/>
                 </Button>
                 
                 <Button
                     onClick={props.onClickReset}
                     disabled={isResetBtnDisabled}
+                    tooltipTitle="Reset"
                 > <Cached/>
                 </Button>
                 
                 <Button
                     onClick={props.onClickSet}
                     disabled={false}
+                    tooltipTitle="Setup"
                 > <Settings/>
                 </Button>
             

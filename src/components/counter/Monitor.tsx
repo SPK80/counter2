@@ -1,5 +1,5 @@
 import React from "react";
-import s from './Monitor.module.css'
+// import s from './Monitor.module.css'
 import {createStyles, makeStyles, Paper, Theme} from "@material-ui/core";
 
 export type MonitorModeType = 'count' | 'info' | 'error'
@@ -11,18 +11,6 @@ type MonitorPropsType = {
 }
 
 export const Monitor: React.FC<MonitorPropsType> = (props) => {
-    let className = s.monitor;
-    switch (props.mode) {
-        case "count":
-            className += ' ' + (props.isMaxValue ? s.maxValue : s.normValue)
-            break
-        case "info":
-            className += ' ' + s.info
-            break
-        case "error":
-            className += ' ' + s.error
-            break
-    }
     
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -35,14 +23,42 @@ export const Monitor: React.FC<MonitorPropsType> = (props) => {
                 font: "inherit",
                 background: "azure",
             },
+            monitor: {},
+            maxValue: {
+                color: "red",
+                fontSize: 32,
+            },
+            normValue: {
+                color: "darkmagenta",
+                fontSize: 30,
+            },
+            info: {
+                color: "#007579",
+                fontSize: 16,
+            },
+            error: {
+                color: "red",
+                fontSize: 16,
+            }
         }),
     )
     
     const classes = useStyles();
-    
+    let spanClass = classes.monitor;
+    switch (props.mode) {
+        case "count":
+            spanClass += ' ' + (props.isMaxValue ? classes.maxValue : classes.normValue)
+            break
+        case "info":
+            spanClass += ' ' + classes.info
+            break
+        case "error":
+            spanClass += ' ' + classes.error
+            break
+    }
     
     return <Paper
         variant={"outlined"}
         className={classes.paper}
-    > <span>{props.data}</span> </Paper>
+    > <span className={spanClass}>{props.data}</span> </Paper>
 }
